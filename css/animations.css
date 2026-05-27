@@ -1,0 +1,132 @@
+/* css/animations.css */
+
+/* Entrance Transitions - Initially Hidden */
+.fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Staggered Service Cards - Initial State */
+.service-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s ease,
+                background-color 0.3s ease;
+}
+
+/* Triggered State via JavaScript Intersection Observer */
+.fade-up.animate-in,
+.fade-in.animate-in,
+.slide-left.animate-in,
+.slide-right.animate-in,
+.service-card.animate-in {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* Premium Staggered Animations Delay Helper Classes (if inline) */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+
+/* Micro-animations and Keyframes */
+
+/* CTA Button Pulse */
+@keyframes subtlePulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(82, 183, 136, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(82, 183, 136, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(82, 183, 136, 0);
+    }
+}
+
+.pulse-btn {
+    animation: subtlePulse 2.5s infinite ease-in-out;
+}
+
+/* Hover lift for cards and premium elements */
+.hover-lift {
+    transition: var(--transition-smooth);
+}
+
+.hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Smooth zoom on hero background */
+@keyframes bgScale {
+    from {
+        transform: scale(1.05);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.animate-bg {
+    animation: bgScale 8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Float Animation for SVG icons and decorative elements */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.float-icon {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Shimmer shine effect for highlights */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.shimmer-text {
+    background: linear-gradient(90deg, var(--accent-green), var(--light-green), var(--accent-green));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+}

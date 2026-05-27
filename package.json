@@ -1,0 +1,13 @@
+{
+  "name": "malenadu-webs",
+  "version": "1.0.0",
+  "description": "Bilingual business website for Malnad Webs",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

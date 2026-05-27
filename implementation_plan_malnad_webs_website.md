@@ -267,8 +267,8 @@ Build out the full content and visual design for all 5 sections: Hero (with tagl
             <div class="about-text">
                 <p data-lang-key="about_p1">
                     We are a team passionate about empowering local businesses in the 
-                    Malnad region — from Chikmagalur to Shimoga, Sakleshpur to Madikeri. 
-                    We believe every business, big or small, deserves a strong digital presence.
+                    beautiful Malnad region. We believe every business, big or small, 
+                    deserves a strong digital presence.
                 </p>
                 <p data-lang-key="about_p2">
                     Our mission is to bridge the gap between traditional local enterprises 
@@ -742,7 +742,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // About
             about_title: 'About Malnad Webs',
-            about_p1: 'We are a team passionate about empowering local businesses in the Malnad region — from Chikmagalur to Shimoga, Sakleshpur to Madikeri. We believe every business, big or small, deserves a strong digital presence.',
+            about_p1: 'We are a team passionate about empowering local businesses in the beautiful Malnad region. We believe every business, big or small, deserves a strong digital presence.',
             about_p2: 'Our mission is to bridge the gap between traditional local enterprises and the digital world, making technology accessible and affordable.',
 
             // Services
@@ -788,7 +788,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // About
             about_title: 'ಮಲೆನಾಡು ವೆಬ್ಸ್ ಬಗ್ಗೆ',
-            about_p1: 'ಚಿಕ್ಕಮಗಳೂರಿನಿಂದ ಶಿವಮೊಗ್ಗ, ಸಕಲೇಶಪುರದಿಂದ ಮಡಿಕೇರಿವರೆಗೆ — ಮಲೆನಾಡು ಪ್ರದೇಶದ ಸ್ಥಳೀಯ ವ್ಯಾಪಾರಗಳನ್ನು ಸಬಲಗೊಳಿಸುವ ಉತ್ಸಾಹ ಹೊಂದಿರುವ ತಂಡ ನಾವು. ಪ್ರತಿಯೊಂದು ವ್ಯಾಪಾರ, ದೊಡ್ಡದಿರಲಿ ಅಥಬಾ ಚಿಕ್ಕದಿರಲಿ, ಬಲವಾದ ಡಿಜಿಟಲ್ ಉಪಸ್ಥಿತಿಗೆ ಅರ್ಹ ಎಂದು ನಾವು ನಂಬುತ್ತೇವೆ.',
+            about_p1: 'ಸುಂದರ ಮಲೆನಾಡು ಪ್ರದೇಶದ ಸ್ಥಳೀಯ ವ್ಯಾಪಾರಗಳನ್ನು ಸಬಲಗೊಳಿಸುವ ಉತ್ಸಾಹ ಹೊಂದಿರುವ ತಂಡ ನಾವು. ಪ್ರತಿಯೊಂದು ವ್ಯಾಪಾರ, ದೊಡ್ಡದಿರಲಿ ಅಥಬಾ ಚಿಕ್ಕದಿರಲಿ, ಬಲವಾದ ಡಿಜಿಟಲ್ ಉಪಸ್ಥಿತಿಗೆ ಅರ್ಹ ಎಂದು ನಾವು ನಂಬುತ್ತೇವೆ.',
             about_p2: 'ಸಾಂಪ್ರದಾಯಿಕ ಸ್ಥಳೀಯ ಉದ್ಯಮಗಳು ಮತ್ತು ಡಿಜಿಟಲ್ ಜಗತ್ತಿನ ನಡುವಿನ ಅಂತರವನ್ನು ಕಡಿಮೆ ಮಾಡುವುದು ನಮ್ಮ ಧ್ಯೇಯ.',
 
             // Services
