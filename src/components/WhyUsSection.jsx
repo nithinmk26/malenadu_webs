@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import ScrollRevealText from './ScrollRevealText';
 
@@ -13,6 +13,7 @@ const whyCards = [
 function WhyCard({ card, index }) {
   const { t } = useLanguage();
   const cardRef = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
 
   // Track scroll position for each card
   const { scrollYProgress } = useScroll({
@@ -23,20 +24,20 @@ function WhyCard({ card, index }) {
   // Alternating entry slide values (left / right)
   const slideDistance = index % 2 === 0 ? -40 : 40;
   
-  const x = useTransform(scrollYProgress, [0, 1], [slideDistance, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
-  const scale = useTransform(scrollYProgress, [0, 1], [0.93, 1]);
+  const x = useTransform(scrollYProgress, [0, 1], [prefersReducedMotion ? 0 : slideDistance, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [prefersReducedMotion ? 1 : 0, 1]);
+  const scale = useTransform(scrollYProgress, [0, 1], [prefersReducedMotion ? 1 : 0.93, 1]);
 
   // Watermark number scroll parallax
-  const numberY = useTransform(scrollYProgress, [0, 1], [-25, 0]);
-  const numberScale = useTransform(scrollYProgress, [0, 1], [0.75, 1]);
+  const numberY = useTransform(scrollYProgress, [0, 1], [prefersReducedMotion ? 0 : -25, 0]);
+  const numberScale = useTransform(scrollYProgress, [0, 1], [prefersReducedMotion ? 1 : 0.75, 1]);
 
   return (
     <motion.div
       ref={cardRef}
       className="why-card"
       style={{ x, opacity, scale }}
-      whileHover={{ y: -8 }}
+      whileHover={prefersReducedMotion ? undefined : { y: -8, scale: 1.02 }}
       transition={{ type: 'spring', stiffness: 300, damping: 22 }}
     >
       <motion.div

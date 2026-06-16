@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useLanguage } from '../context/LanguageContext';
 import ScrollRevealText from './ScrollRevealText';
@@ -29,6 +29,7 @@ const itemVariants = {
 export default function AboutSection() {
   const { t } = useLanguage();
   const sectionRef = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
   
   // Intersection observer for entry animations of children
   const [inViewRef, inView] = useInView({ threshold: 0.15, triggerOnce: true });
@@ -39,28 +40,66 @@ export default function AboutSection() {
     offset: ['start end', 'end start'],
   });
 
-  // Soft, eye-friendly scroll parallax motions
-  const textY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
-  const cardY = useTransform(scrollYProgress, [0, 1], [30, -30]);
-  const decorativeBlobY = useTransform(scrollYProgress, [0, 1], [-50, 50]);
+  // Soft, eye-friendly scroll parallax motions (respecting reduced motion)
+  const textY = useTransform(scrollYProgress, [0, 1], [prefersReducedMotion ? 0 : -30, prefersReducedMotion ? 0 : 30]);
+  const cardY = useTransform(scrollYProgress, [0, 1], [prefersReducedMotion ? 0 : 30, prefersReducedMotion ? 0 : -30]);
 
   return (
     <section id="about" className="about-section" ref={sectionRef} aria-labelledby="about-heading" style={{ overflow: 'hidden', position: 'relative' }}>
-      {/* Decorative Parallax Background Blur */}
-      <motion.div
-        style={{
-          position: 'absolute',
-          top: '20%',
-          right: '-10%',
-          width: '400px',
-          height: '400px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(var(--primary-rgb), 0.03) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-          y: decorativeBlobY,
-          pointerEvents: 'none',
-        }}
-      />
+      {/* Ambient Floating Blobs (Bio-luminescent forest glow) */}
+      {!prefersReducedMotion && (
+        <>
+          <motion.div
+            style={{
+              position: 'absolute',
+              top: '10%',
+              right: '-15%',
+              width: '450px',
+              height: '450px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(var(--primary-rgb), 0.04) 0%, transparent 75%)',
+              filter: 'blur(80px)',
+              pointerEvents: 'none',
+              zIndex: 0,
+            }}
+            animate={{
+              x: [0, 30, -20, 0],
+              y: [0, -50, 20, 0],
+              scale: [1, 1.1, 0.9, 1],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+          <motion.div
+            style={{
+              position: 'absolute',
+              bottom: '5%',
+              left: '-10%',
+              width: '350px',
+              height: '350px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(var(--accent-orange-rgb), 0.03) 0%, transparent 70%)',
+              filter: 'blur(60px)',
+              pointerEvents: 'none',
+              zIndex: 0,
+            }}
+            animate={{
+              x: [0, -20, 15, 0],
+              y: [0, 30, -30, 0],
+              scale: [1, 1.08, 0.95, 1],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: 2,
+            }}
+          />
+        </>
+      )}
 
       <div className="container">
         <motion.div
@@ -91,8 +130,13 @@ export default function AboutSection() {
             className="stats-card"
             style={{ y: cardY }}
             variants={itemVariants}
-            whileHover={{ y: -5 }}
-            transition={{ type: 'spring', stiffness: 300 }}
+            whileHover={prefersReducedMotion ? undefined : { 
+              y: -8, 
+              scale: 1.01,
+              rotate: 0.5,
+              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.6), 0 0 50px rgba(var(--primary-rgb), 0.08)'
+            }}
+            transition={{ type: 'spring', stiffness: 350, damping: 25 }}
           >
             <motion.span className="stats-badge" variants={itemVariants}>
               Western Ghats Core
@@ -109,7 +153,7 @@ export default function AboutSection() {
                 >
                   <motion.div
                     className="stat-icon"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileHover={prefersReducedMotion ? undefined : { scale: 1.1, rotate: 5 }}
                     transition={{ type: 'spring', stiffness: 400 }}
                   >
                     {stat.icon}

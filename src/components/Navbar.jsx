@@ -59,13 +59,13 @@ export default function Navbar() {
         transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.1 }}
         style={{
           background: scrolled
-            ? 'rgba(10, 8, 6, 0.92)'
-            : 'rgba(14, 11, 9, 0.5)',
+            ? 'rgba(10, 14, 18, 0.92)'
+            : 'rgba(15, 20, 26, 0.5)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
           borderBottom: scrolled
-            ? '1px solid rgba(245, 178, 40, 0.12)'
-            : '1px solid rgba(245, 178, 40, 0.05)',
+            ? '1px solid rgba(var(--primary-rgb), 0.12)'
+            : '1px solid rgba(var(--primary-rgb), 0.05)',
           boxShadow: scrolled
             ? '0 10px 40px rgba(0, 0, 0, 0.5)'
             : 'none',

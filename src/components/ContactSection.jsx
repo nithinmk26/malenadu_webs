@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useLanguage } from '../context/LanguageContext';
 import ScrollRevealText from './ScrollRevealText';
@@ -24,6 +24,14 @@ const itemVariants = {
   },
 };
 
+const itemVariantsReduced = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.3 },
+  },
+};
+
 const formVariants = {
   hidden: { opacity: 0, x: 30 },
   visible: {
@@ -33,10 +41,22 @@ const formVariants = {
   },
 };
 
+const formVariantsReduced = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.3 },
+  },
+};
+
 export default function ContactSection() {
   const { t } = useLanguage();
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+
+  const currentItemVariants = prefersReducedMotion ? itemVariantsReduced : itemVariants;
+  const currentFormVariants = prefersReducedMotion ? formVariantsReduced : formVariants;
 
   return (
     <section id="contact" className="contact-section" aria-labelledby="contact-heading">
@@ -58,10 +78,10 @@ export default function ContactSection() {
         >
           {/* Info Panel */}
           <motion.div className="contact-info" variants={containerVariants}>
-            <motion.h3 variants={itemVariants}>
+            <motion.h3 variants={currentItemVariants}>
               {t('contact_title')}
             </motion.h3>
-            <motion.p className="contact-info-subtitle" variants={itemVariants}>
+            <motion.p className="contact-info-subtitle" variants={currentItemVariants}>
               {t('contact_subtitle')}
             </motion.p>
 
@@ -70,11 +90,11 @@ export default function ContactSection() {
                 <motion.div
                   key={i}
                   className="contact-detail"
-                  variants={itemVariants}
+                  variants={currentItemVariants}
                 >
                   <motion.div
                     className="contact-detail-icon"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileHover={prefersReducedMotion ? undefined : { scale: 1.1, rotate: 5 }}
                     transition={{ type: 'spring', stiffness: 400 }}
                   >
                     {detail.icon}
@@ -89,7 +109,7 @@ export default function ContactSection() {
           </motion.div>
 
           {/* Form Panel */}
-          <motion.div className="contact-form-panel" variants={formVariants}>
+          <motion.div className="contact-form-panel" variants={currentFormVariants}>
             {formSubmitted ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -106,7 +126,7 @@ export default function ContactSection() {
               >
                 <motion.div
                   style={{ fontSize: '4rem' }}
-                  animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.2, 1] }}
+                  animate={prefersReducedMotion ? undefined : { rotate: [0, 10, -10, 0], scale: [1, 1.2, 1] }}
                   transition={{ duration: 0.6 }}
                 >
                   ✅
@@ -137,7 +157,7 @@ export default function ContactSection() {
                       name="name"
                       required
                       placeholder={t('form_name_placeholder')}
-                      whileFocus={{ borderColor: 'var(--primary)' }}
+                      whileFocus={prefersReducedMotion ? undefined : { scale: 1.01 }}
                     />
                   </div>
 
@@ -149,7 +169,7 @@ export default function ContactSection() {
                       name="email"
                       required
                       placeholder={t('form_email_placeholder')}
-                      whileFocus={{ borderColor: 'var(--primary)' }}
+                      whileFocus={prefersReducedMotion ? undefined : { scale: 1.01 }}
                     />
                   </div>
 
@@ -176,7 +196,7 @@ export default function ContactSection() {
                       rows={4}
                       required
                       placeholder={t('form_message_placeholder')}
-                      whileFocus={{ borderColor: 'var(--primary)' }}
+                      whileFocus={prefersReducedMotion ? undefined : { scale: 1.01 }}
                     />
                   </div>
                 </div>
@@ -184,7 +204,7 @@ export default function ContactSection() {
                 <motion.button
                   type="submit"
                   className="btn btn-primary btn-submit"
-                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileHover={prefersReducedMotion ? undefined : { scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <span>{t('form_submit')}</span>
