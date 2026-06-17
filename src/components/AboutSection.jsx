@@ -37,12 +37,17 @@ export default function AboutSection() {
   // Scroll tracking for parallax effects
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start end', 'end start'],
+    offset: ['start 0.8', 'end 0.2'],
   });
 
-  // Soft, eye-friendly scroll parallax motions (respecting reduced motion)
-  const textY = useTransform(scrollYProgress, [0, 1], [prefersReducedMotion ? 0 : -30, prefersReducedMotion ? 0 : 30]);
-  const cardY = useTransform(scrollYProgress, [0, 1], [prefersReducedMotion ? 0 : 30, prefersReducedMotion ? 0 : -30]);
+  // Scroll-driven transforms
+  const textOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [100, 0, 0, -100]);
+  const textScale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.9, 1, 1, 0.9]);
+  
+  const cardOpacity = useTransform(scrollYProgress, [0.1, 0.3, 0.8, 1], [0, 1, 1, 0]);
+  const cardY = useTransform(scrollYProgress, [0.1, 0.3, 0.8, 1], [150, 0, 0, -150]);
+  const cardRotateX = useTransform(scrollYProgress, [0.1, 0.3, 0.8, 1], [15, 0, 0, -15]);
 
   return (
     <section id="about" className="about-section" ref={sectionRef} aria-labelledby="about-heading" style={{ overflow: 'hidden', position: 'relative' }}>
@@ -109,51 +114,63 @@ export default function AboutSection() {
           animate={inView ? 'visible' : 'hidden'}
           variants={containerVariants}
         >
-          {/* Text Content with upward scroll parallax */}
-          <motion.div className="about-text" style={{ y: textY }}>
+          {/* Text Content with scroll-driven animations */}
+          <motion.div 
+            className="about-text" 
+            style={{ 
+              opacity: prefersReducedMotion ? 1 : textOpacity, 
+              y: prefersReducedMotion ? 0 : textY,
+              scale: prefersReducedMotion ? 1 : textScale
+            }}
+          >
             <div id="about-heading">
               <ScrollRevealText className="section-title section-title-gradient">
                 {t('about_title')}
               </ScrollRevealText>
             </div>
-            <motion.div className="about-title-underline" variants={itemVariants} />
-            <motion.p className="about-paragraph" variants={itemVariants}>
+            <div className="about-title-underline" />
+            <p className="about-paragraph">
               {t('about_p1')}
-            </motion.p>
-            <motion.p className="about-paragraph" variants={itemVariants}>
+            </p>
+            <p className="about-paragraph">
               {t('about_p2')}
-            </motion.p>
+            </p>
           </motion.div>
 
-          {/* Stats Card with downward scroll parallax */}
+          {/* Stats Card with scroll-driven animations */}
           <motion.div
             className="stats-card"
-            style={{ y: cardY }}
-            variants={itemVariants}
+            style={{ 
+              opacity: prefersReducedMotion ? 1 : cardOpacity, 
+              y: prefersReducedMotion ? 0 : cardY,
+              rotateX: prefersReducedMotion ? 0 : cardRotateX
+            }}
             whileHover={prefersReducedMotion ? undefined : { 
               y: -8, 
-              scale: 1.01,
-              rotate: 0.5,
-              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.6), 0 0 50px rgba(var(--primary-rgb), 0.08)'
+              scale: 1.02,
+              rotate: 1,
+              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.6), 0 0 50px rgba(var(--primary-rgb), 0.15)'
             }}
             transition={{ type: 'spring', stiffness: 350, damping: 25 }}
           >
-            <motion.span className="stats-badge" variants={itemVariants}>
+            <span className="stats-badge">
               Western Ghats Core
-            </motion.span>
-            <motion.h3 variants={itemVariants}>Bridging Hills with Webs</motion.h3>
+            </span>
+            <h3>Bridging Hills with Webs</h3>
 
             <ul className="stats-list">
               {stats.map((stat, i) => (
                 <motion.li
                   key={i}
                   className="stat-item"
-                  variants={itemVariants}
-                  custom={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.8 }}
+                  transition={{ delay: i * 0.15, duration: 0.5 }}
                 >
                   <motion.div
                     className="stat-icon"
-                    whileHover={prefersReducedMotion ? undefined : { scale: 1.1, rotate: 5 }}
+                    whileHover={prefersReducedMotion ? undefined : { scale: 1.2, rotate: 10 }}
                     transition={{ type: 'spring', stiffness: 400 }}
                   >
                     {stat.icon}

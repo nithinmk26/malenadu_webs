@@ -10,9 +10,21 @@ const footerLinks = [
   { key: 'nav_contact', href: '#contact' },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 120, damping: 14 } },
+};
+
 export default function Footer() {
   const { t } = useLanguage();
-  const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   const handleClick = (e, href) => {
     e.preventDefault();
@@ -25,10 +37,10 @@ export default function Footer() {
   return (
     <motion.footer
       className="footer"
-      ref={ref}
-      initial={{ opacity: 0 }}
-      animate={inView ? { opacity: 1 } : {}}
-      transition={{ duration: 0.8 }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={containerVariants}
     >
       <div className="container footer-inner">
         {/* Brand */}
@@ -36,33 +48,27 @@ export default function Footer() {
           href="#hero"
           className="footer-brand"
           onClick={(e) => handleClick(e, '#hero')}
-          whileHover={{ scale: 1.03 }}
+          whileHover={{ scale: 1.05, y: -2 }}
+          transition={{ type: 'spring', stiffness: 300 }}
+          variants={itemVariants}
           aria-label="Malnad Webs Homepage"
         >
           <div className="footer-logo-icon">🍃</div>
           <span className="footer-logo-text">Malnad Webs</span>
         </motion.a>
 
-        <motion.p
-          className="footer-tagline"
-          initial={{ opacity: 0, y: 10 }}
-          animate={inView ? { opacity: 0.8, y: 0 } : {}}
-          transition={{ delay: 0.2, duration: 0.6 }}
-        >
+        <motion.p className="footer-tagline" variants={itemVariants}>
           {t('footer_tagline')}
         </motion.p>
 
         {/* Navigation */}
         <ul className="footer-nav">
-          {footerLinks.map((link, i) => (
-            <motion.li
-              key={link.key}
-              initial={{ opacity: 0, y: 10 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 * i + 0.3, duration: 0.4 }}
-            >
-              <a href={link.href} onClick={(e) => handleClick(e, link.href)}>
-                {t(link.key)}
+          {footerLinks.map((link) => (
+            <motion.li key={link.key} variants={itemVariants}>
+              <a href={link.href} onClick={(e) => handleClick(e, link.href)} style={{ display: 'inline-block', transition: 'color 0.3s ease' }}>
+                <motion.span whileHover={{ scale: 1.1, color: 'var(--primary)' }} transition={{ type: 'spring', stiffness: 400 }}>
+                  {t(link.key)}
+                </motion.span>
               </a>
             </motion.li>
           ))}
@@ -71,18 +77,14 @@ export default function Footer() {
         {/* Animated Divider */}
         <motion.div
           className="footer-divider"
-          initial={{ scaleX: 0 }}
-          animate={inView ? { scaleX: 1 } : {}}
-          transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          variants={{
+            hidden: { scaleX: 0, opacity: 0 },
+            visible: { scaleX: 1, opacity: 1, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+          }}
           style={{ transformOrigin: 'center' }}
         />
 
-        <motion.p
-          className="footer-copyright"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.8, duration: 0.5 }}
-        >
+        <motion.p className="footer-copyright" variants={itemVariants}>
           {t('footer_text')}
         </motion.p>
       </div>

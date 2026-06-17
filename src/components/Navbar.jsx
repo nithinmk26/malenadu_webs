@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 
 const navItems = [
@@ -13,30 +13,33 @@ const navItems = [
 export default function Navbar() {
   const { t, toggleLang, lang } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+  const { scrollY } = useScroll();
 
-      // Determine active section
-      const sections = navItems.map((item) => item.href.slice(1));
-      let current = sections[0];
-      for (const id of sections) {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 150) current = id;
-        }
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    if (latest > 100 && latest > previous) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+    setScrolled(latest > 50);
+
+    // Determine active section
+    const sections = navItems.map((item) => item.href.slice(1));
+    let current = sections[0];
+    for (const id of sections) {
+      const el = document.getElementById(id);
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= 150) current = id;
       }
-      setActiveSection(current);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    }
+    setActiveSection(current);
+  });
 
   const handleNavClick = (e, href) => {
     e.preventDefault();
@@ -54,9 +57,13 @@ export default function Navbar() {
     <>
       <motion.header
         className="navbar"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.1 }}
+        variants={{
+          visible: { y: 0, opacity: 1 },
+          hidden: { y: "-100%", opacity: 0 }
+        }}
+        initial="visible"
+        animate={hidden ? "hidden" : "visible"}
+        transition={{ duration: 0.35, ease: "easeInOut" }}
         style={{
           background: scrolled
             ? 'rgba(10, 14, 18, 0.92)'
