@@ -5,8 +5,8 @@ import { useLanguage } from '../context/LanguageContext';
 import ScrollRevealText from './ScrollRevealText';
 
 const contactDetails = [
-  { icon: '📞', label: 'Phone / WhatsApp', value: '+91 9845X XXXXX' },
-  { icon: '✉️', label: 'Email', value: 'hello@malnadwebs.com' },
+  { icon: '📞', label: 'Phone / WhatsApp', value: '+91 8867303481' },
+  { icon: '✉️', label: 'Email', value: 'malnadwebs@gmail.com' },
   { icon: '📍', label: 'Location', value: 'Malnad Region, Karnataka, India' },
 ];
 
@@ -138,15 +138,22 @@ export default function ContactSection() {
               </motion.div>
             ) : (
               <form
-                action="https://formsubmit.co/nithinmk26@gmail.com"
-                method="POST"
                 id="contactForm"
-                onSubmit={() => setFormSubmitted(true)}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const formData = new FormData(e.target);
+                  const name = formData.get('name');
+                  const email = formData.get('email');
+                  const business = formData.get('business_type');
+                  const message = formData.get('message');
+                  
+                  const text = `*New Inquiry from Malnad Webs!*\n\n*Name:* ${name}\n*Email:* ${email}\n*Business:* ${business || 'Not specified'}\n*Message:* ${message}`;
+                  const encodedText = encodeURIComponent(text);
+                  const phone = '918867303481';
+                  window.open(`https://wa.me/${phone}?text=${encodedText}`, '_blank');
+                  setFormSubmitted(true);
+                }}
               >
-                <input type="hidden" name="_subject" value="New Inquiry from Malnad Webs!" />
-                <input type="hidden" name="_captcha" value="true" />
-                <input type="hidden" name="_template" value="table" />
-                <input type="text" name="_honey" style={{ display: 'none' }} tabIndex={-1} aria-hidden="true" />
 
                 <div className="form-grid">
                   <div className="form-group">
