@@ -3,5 +3,6 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/malenadu_webs/',
+  base: process.env.NETLIFY ? '/' : '/malenadu_webs/',
 })
+
