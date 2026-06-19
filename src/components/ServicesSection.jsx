@@ -97,11 +97,11 @@ export default function ServicesSection() {
 
       <div className="container">
         <div className="section-header">
-          <div id="services-heading">
+          <h2 id="services-heading" className="section-title-wrapper">
             <ScrollRevealText className="section-title section-title-gradient">
               {t('services_title')}
             </ScrollRevealText>
-          </div>
+          </h2>
           <div className="title-underline" />
           <p className="section-subtitle">{t('services_subtitle')}</p>
         </div>

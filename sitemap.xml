@@ -1,23 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- English Pages -->
   <url>
-    <loc>https://nithinmk26.github.io/malenadu_webs/</loc>
-    <lastmod>2026-06-17T07:03:00+00:00</lastmod>
+    <loc>https://malnadwebs.netlify.app/</loc>
+    <lastmod>2026-06-19T14:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://nithinmk26.github.io/malenadu_webs/#about</loc>
+    <loc>https://malnadwebs.netlify.app/#about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nithinmk26.github.io/malenadu_webs/#services</loc>
+    <loc>https://malnadwebs.netlify.app/#services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://nithinmk26.github.io/malenadu_webs/#contact</loc>
+    <loc>https://malnadwebs.netlify.app/#contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Kannada Pages -->
+  <url>
+    <loc>https://malnadwebs.netlify.app/?lang=kn</loc>
+    <lastmod>2026-06-19T14:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://malnadwebs.netlify.app/?lang=kn#about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://malnadwebs.netlify.app/?lang=kn#services</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://malnadwebs.netlify.app/?lang=kn#contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

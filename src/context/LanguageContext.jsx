@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback } from 'react';
+import { createContext, useContext, useState, useCallback, useEffect } from 'react';
 
 const translations = {
   en: {
@@ -130,10 +130,20 @@ const LanguageContext = createContext();
 export function LanguageProvider({ children }) {
   const [lang, setLang] = useState(() => {
     try {
-      return localStorage.getItem('malnadwebs-lang') || 'en';
-    } catch {
-      return 'en';
-    }
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get('lang');
+      if (urlLang === 'kn' || urlLang === 'en') {
+        document.documentElement.lang = urlLang;
+        return urlLang;
+      }
+      const localLang = localStorage.getItem('malnadwebs-lang');
+      if (localLang === 'kn' || localLang === 'en') {
+        document.documentElement.lang = localLang;
+        return localLang;
+      }
+    } catch {}
+    document.documentElement.lang = 'en';
+    return 'en';
   });
 
   const toggleLang = useCallback(() => {
@@ -142,9 +152,32 @@ export function LanguageProvider({ children }) {
       try {
         localStorage.setItem('malnadwebs-lang', next);
       } catch {}
+      
+      // Update URL search parameters
+      const url = new URL(window.location.href);
+      if (next === 'kn') {
+        url.searchParams.set('lang', 'kn');
+      } else {
+        url.searchParams.delete('lang');
+      }
+      window.history.pushState(null, '', url.pathname + url.search + url.hash);
+      
       document.documentElement.lang = next;
       return next;
     });
+  }, []);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get('lang');
+      const targetLang = (urlLang === 'kn' || urlLang === 'en') ? urlLang : 'en';
+      setLang(targetLang);
+      document.documentElement.lang = targetLang;
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   const t = useCallback(

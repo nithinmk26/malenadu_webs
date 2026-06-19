@@ -123,11 +123,11 @@ export default function AboutSection() {
               scale: prefersReducedMotion ? 1 : textScale
             }}
           >
-            <div id="about-heading">
+            <h2 id="about-heading" className="section-title-wrapper">
               <ScrollRevealText className="section-title section-title-gradient">
                 {t('about_title')}
               </ScrollRevealText>
-            </div>
+            </h2>
             <div className="about-title-underline" />
             <p className="about-paragraph">
               {t('about_p1')}

@@ -62,11 +62,11 @@ export default function ContactSection() {
     <section id="contact" className="contact-section" aria-labelledby="contact-heading">
       <div className="container">
         <div className="section-header">
-          <div id="contact-heading">
+          <h2 id="contact-heading" className="section-title-wrapper">
             <ScrollRevealText className="section-title section-title-gradient">
               {t('contact_title')}
             </ScrollRevealText>
-          </div>
+          </h2>
           <div className="title-underline" />
         </div>
 

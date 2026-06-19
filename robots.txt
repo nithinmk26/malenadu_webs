@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nithinmk26.github.io/malenadu_webs/sitemap.xml
+Sitemap: https://malnadwebs.netlify.app/sitemap.xml

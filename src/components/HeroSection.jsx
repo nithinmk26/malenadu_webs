@@ -55,7 +55,7 @@ export default function HeroSection() {
       {/* Parallax Background */}
       <motion.div className="hero-bg" style={{ y: bgY, scale: bgScale }}>
         <img
-          src="./images/malnad_hero_bg.png"
+          src="./images/malnad_hero_bg.webp"
           alt="Lush green Malnad mist hills coffee estate representing Western Ghats"
           className="hero-bg-image"
           loading="eager"

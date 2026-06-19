@@ -73,11 +73,11 @@ export default function WhyUsSection() {
     <section id="why-us" className="why-section" ref={containerRef} aria-labelledby="why-heading">
       <div className="container">
         <div className="section-header">
-          <div id="why-heading">
+          <h2 id="why-heading" className="section-title-wrapper">
             <ScrollRevealText className="section-title section-title-gradient">
               {t('why_title')}
             </ScrollRevealText>
-          </div>
+          </h2>
           <div className="title-underline" />
           <p className="section-subtitle">{t('why_subtitle')}</p>
         </div>
