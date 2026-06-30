@@ -89,8 +89,9 @@ export default function Navbar() {
               className="nav-logo-icon"
               whileHover={{ rotate: 15, scale: 1.1 }}
               transition={{ type: 'spring', stiffness: 300 }}
+              style={{ overflow: 'hidden' }}
             >
-              🍃
+              <img src="/images/malnad_webs_logo.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </motion.div>
             <span className="nav-logo-text">Malnad Webs</span>
           </a>

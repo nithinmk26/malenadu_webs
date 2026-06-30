@@ -53,7 +53,9 @@ export default function Footer() {
           variants={itemVariants}
           aria-label="Malnad Webs Homepage"
         >
-          <div className="footer-logo-icon">🍃</div>
+          <div className="footer-logo-icon" style={{ overflow: 'hidden' }}>
+            <img src="/images/malnad_webs_logo.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          </div>
           <span className="footer-logo-text">Malnad Webs</span>
         </motion.a>
 
