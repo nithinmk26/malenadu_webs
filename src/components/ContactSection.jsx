@@ -190,6 +190,7 @@ export default function ContactSection() {
                         <option value="retail">{t('option_retail')}</option>
                         <option value="cab">{t('option_cab')}</option>
                         <option value="estate">{t('option_estate')}</option>
+                        <option value="einvitation">{t('option_einvitation')}</option>
                         <option value="other">{t('option_other')}</option>
                       </select>
                     </div>

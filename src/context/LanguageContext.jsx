@@ -27,6 +27,8 @@ const translations = {
     service_seo_desc: 'Get found by local customers on Google Search and Maps. We optimize your metadata to ensure high search visibility.',
     service_social: 'Social Media Management',
     service_social_desc: 'Engage with customers and build your local brand on Facebook, Instagram, and WhatsApp through professional content design.',
+    service_einvitation: 'E-Invitation Cards',
+    service_einvitation_desc: 'Custom, elegant, and interactive digital invitation cards for weddings, housewarmings, birthdays, and special events.',
 
     why_title: 'Why Choose Us',
     why_subtitle: 'Empowering your local venture with modern digital solutions, zero tech hassle, and direct support.',
@@ -56,6 +58,7 @@ const translations = {
     option_retail: 'Retail / Wholesale Shop',
     option_cab: 'Cab / Taxi / Travel Services',
     option_estate: 'Coffee / Spice Estate',
+    option_einvitation: 'E-Invitation Cards / Digital Invitations',
     option_other: 'Other Local Business',
 
     footer_tagline: 'Helping the heart of Karnataka go digital.',
@@ -88,6 +91,8 @@ const translations = {
     service_seo_desc: 'ಸ್ಥಳೀಯ ಗ್ರಾಹಕರು ಗೂಗಲ್ ಸರ್ಚ್ ಮತ್ತು ಮ್ಯಾಪ್ಸ್ ಮೂಲಕ ನಿಮ್ಮ ವ್ಯಾಪಾರವನ್ನು ಸುಲಭವಾಗಿ ಕಂಡುಕೊಳ್ಳಲು ನಾವು ಸರ್ಚ್ ಆಪ್ಟಿಮೈಸೇಶನ್ ಮಾಡುತ್ತೇವೆ.',
     service_social: 'ಸಾಮಾಜಿಕ ಮಾಧ್ಯಮ ನಿರ್ವಹಣೆ',
     service_social_desc: 'ನಿಮ್ಮ ಬ್ರಾಂಡ್ ಬೆಳೆಸಲು ಫೇಸ್‌ಬುಕ್, ಇನ್‌ಸ್ಟಾಗ್ರಾಮ್ ಮತ್ತು ವಾಟ್ಸಾಪ್‌ನಲ್ಲಿ ಆಕರ್ಷಕ ವಿಷಯಗಳನ್ನು ರಚಿಸಿ ನಿರ್ವಹಿಸುತ್ತೇವೆ.',
+    service_einvitation: 'ಇ-ಆಹ್ವಾನ ಪತ್ರಿಕೆಗಳು',
+    service_einvitation_desc: 'ಮದುವೆ, ಗೃಹಪ್ರವೇಶ, ಹುಟ್ಟುಹಬ್ಬ ಮತ್ತು ವಿಶೇಷ ಸಮಾರಂಭಗಳಿಗೆ ಕಸ್ಟಮೈಸ್ಡ್, ಸುಂದರ ಮತ್ತು ಸಂವಾದಾತ್ಮಕ ಡಿಜಿಟಲ್ ಆಹ್ವಾನ ಪತ್ರಿಕೆಗಳು.',
 
     why_title: 'ನಮ್ಮನ್ನು ಏಕೆ ಆಯ್ಕೆ ಮಾಡಬೇಕು',
     why_subtitle: 'ಯಾವುದೇ ತಾಂತ್ರಿಕ ತೊಂದರೆಗಳಿಲ್ಲದೆ, ಸ್ಥಳೀಯ ಸಂಸ್ಕೃತಿಗೆ ಹೊಂದುವ ಡಿಜಿಟಲ್ ಪರಿಹಾರಗಳು ಮತ್ತು ನೇರ ಗ್ರಾಹಕ ಬೆಂಬಲ.',
@@ -117,6 +122,7 @@ const translations = {
     option_retail: 'ಚಿಲ್ಲರೆ / ಸಗಟು ವ್ಯಾಪಾರ ಅಂಗಡಿ',
     option_cab: 'ಕ್ಯಾಬ್ / ಟ್ಯಾಕ್ಸಿ / ಟ್ರಾವೆಲ್ಸ್ ಸರ್ವಿಸಸ್',
     option_estate: 'ಕಾಫಿ / ಸಾಂಬಾರ ಪದಾರ್ಥಗಳ ಎಸ್ಟೇಟ್',
+    option_einvitation: 'ಇ-ಆಹ್ವಾನ ಪತ್ರಿಕೆಗಳು / ಡಿಜಿಟಲ್ ಕಾರ್ಡ್‌ಗಳು',
     option_other: 'ಇತರ ಸ್ಥಳೀಯ ವ್ಯಾಪಾರ',
 
     footer_tagline: 'ಕರ್ನಾಟಕದ ಪ್ರಕೃತಿ ಮಡಿಲಿನ ವ್ಯಾಪಾರಗಳನ್ನು ಡಿಜಿಟಲ್ ಲೋಕಕ್ಕೆ ಕೊಂಡೊಯ್ಯುತ್ತಿದ್ದೇವೆ.',

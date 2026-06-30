@@ -1,7 +1,7 @@
 import { useRef, useCallback } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import { HiOutlineComputerDesktop, HiOutlineServerStack, HiOutlineMagnifyingGlass, HiOutlineShare } from 'react-icons/hi2';
+import { HiOutlineComputerDesktop, HiOutlineServerStack, HiOutlineMagnifyingGlass, HiOutlineShare, HiOutlineEnvelopeOpen } from 'react-icons/hi2';
 import ScrollRevealText from './ScrollRevealText';
 
 const services = [
@@ -9,6 +9,7 @@ const services = [
   { titleKey: 'service_hosting', descKey: 'service_hosting_desc', Icon: HiOutlineServerStack },
   { titleKey: 'service_seo', descKey: 'service_seo_desc', Icon: HiOutlineMagnifyingGlass },
   { titleKey: 'service_social', descKey: 'service_social_desc', Icon: HiOutlineShare },
+  { titleKey: 'service_einvitation', descKey: 'service_einvitation_desc', Icon: HiOutlineEnvelopeOpen },
 ];
 
 function ServiceCard({ service, index }) {
